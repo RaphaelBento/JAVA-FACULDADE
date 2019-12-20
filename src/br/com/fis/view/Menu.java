@@ -1,9 +1,10 @@
 
 package br.com.fis.view;
+
+import br.com.fis.controller.DepartamentoBo;
+import br.com.fis.controller.EmpregadoBo;
 import br.com.fis.model.Departamento;
-import br.com.fis.model.DepartamentoBo;
-import br.com.fis.model.Empregado;
-import br.com.fis.model.EmpregadoBo;
+import br.com.fis.model.Gerente;
 import br.com.fis.utl.Teclado;
 
 
@@ -37,6 +38,7 @@ public class Menu {
     		
     		System.out.println("pasta salva");
     		
+    		
     		Departamento depart2 = new Departamento(tc.getDevolvaInt2(),tc.getDevolveString2());
     		
     		depart.setNome(nomeDpt);
@@ -49,7 +51,7 @@ public class Menu {
     		break;
     		
     	case 2 :
-    		System.out.println("\n1 - Criar funcionário\n2- consultar nome de funcionário\n3 - Cconsultar todos os funcionários ");
+    		System.out.println("\n1 - Criar funcionário\n2 - Consultar todos os funcionários ");
     		int caso2 = 0;
 			tc.setCaso2(caso2);
 			
@@ -68,26 +70,23 @@ public class Menu {
         	System.out.println("Insira o ID do funcionario");
         	tc.setLerInt(ID);
         	
-        	System.out.println("Deseja salvar funcionario cadastrado\n1 - Salvar\n99 - sair");	
-        	
-        	
-        	Empregado func=new Empregado(tc.getDevolveString(),tc.getDevoveLong(),tc.getDevolvaInt());
+        	System.out.println("esse funcionário será o gerente de qual departamento");
+    		tc.setLerDepart(nomeDpt2);
     		
+    		Gerente ger =new Gerente(nome, nomeDpt2, cpf, ID);
+    		ger.DevolveGerente(tc.getDevolveString2(), tc.getDevoveLong());
+    		
+        	
           	System.out.println("\nGerando Arquivo..........");
           	
-          	EmpregadoBo funcDados =new EmpregadoBo(func.getNome(),tc.getDevolveString2(),func.getCPF(),func.getID());
+          	EmpregadoBo funcDados =new EmpregadoBo(tc.getDevolveString(),tc.getDevolveString2(),tc.getDevoveLong(),tc.getDevolvaInt());
           	
-    		funcDados.GravarFuncionario(func.getNome(),tc.getDevolveString2(),func.getCPF(),func.getID());
+    		funcDados.GravarFuncionario();
     		break;
-       
-		case 2:/*chama a função da classe Empregado que cuida de todo resto*/		
-		Empregado func2=new Empregado(tc.getDevolveString(),tc.getDevoveLong(),tc.getDevolvaInt());
-    	func2.RetornaNome();
-    	break;
-    	
-		case 3://Método GetAll();
+  
+		case 2://Método GetAll();
 			
-		EmpregadoBo func3=new EmpregadoBo(tc.getDevolveString(),tc.getDevolveDpart(),tc.getDevoveLong(),tc.getDevolvaInt());
+		EmpregadoBo func3=new EmpregadoBo(nome,nomeDpt2,cpf,ID);
 		System.out.println("Informe o nome do departamento o qual deseja obter todos os nomes cadastrados");
 		tc.setLerDepart(nomeDpt);	
 		System.out.println(tc.getDevolveDpart());

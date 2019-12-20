@@ -1,4 +1,4 @@
-package br.com.fis.model;
+package br.com.fis.controller;
 
 import java.io.File;
 

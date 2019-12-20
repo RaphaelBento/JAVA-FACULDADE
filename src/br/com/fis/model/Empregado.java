@@ -16,16 +16,26 @@ public class Empregado {
    private long cpf;
    private int ID;
    Teclado tc =new Teclado();
-   
-   public Empregado(String nome,long cpf,int ID){
+   private String nomeDpt;
+  
+   public Empregado(String nome,String nomedepart,long cpf,int ID){
 	   this.nome=nome;
 	   this.cpf=cpf;
 	   this.ID=ID;
+	   this.nomeDpt=nomedepart;
+   }
+   
+   public void setNomeDepartamento(String NomeDepartamento) {
+	   this.nomeDpt=NomeDepartamento;
+   }
+   
+   public String getNomeDepartamento() {
+	   return nomeDpt;
    }
    
    public void setNome(String nome){
 	   this.nome=nome;
-   this.nome=nome;
+   
    }
    public String getNome(){
        return nome;
@@ -42,19 +52,13 @@ public class Empregado {
    }
     public int getID() {
     	return ID;
-    }
-
+    }   
+    
    
-	public void RetornaNome(/*coloque aqui os parametros da consulta*/) {//retorne uma string com os dados.
-	
-	//os menus devem existir somente na view
-	System.out.println("informe o nome do departamento para obter informações");
-	tc.setLerDepart(nome);
-	System.out.println("Agora informe o nome do funcionário que deseja encontrar");
-	tc.setLerString2(nome);
-	
-	 // daqui para baixo deveria estar somente em empregadoBO sem os menus
-	String path = "c:\\"+tc.getDevolveDpart()+"\\"+tc.getDevolveString2()+".txt";
+	public void RetornaNome(String nome ,String departament) {
+	this.nome=nome;
+	this.nomeDpt=departament;
+	String path = "c:\\"+nomeDpt+"\\"+nome+".txt";
 	
 	BufferedReader br = null;
 	FileReader fr = null;
@@ -79,9 +83,4 @@ public class Empregado {
 	}
 	}
 }
-	
-	
-    	  
-      
-	
 }
